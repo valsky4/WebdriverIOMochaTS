@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Mar 15 18:54:23 EET 2023","Wed Mar 15 18:54:25 EET 2023","2144","","Alert examples","","","","Accept alert",""
+"passed","Wed Mar 15 18:54:27 EET 2023","Wed Mar 15 18:54:27 EET 2023","17","","Alert examples","","","","Cancel alert",""
+"passed","Wed Mar 15 18:54:26 EET 2023","Wed Mar 15 18:54:26 EET 2023","25","","Alert examples","","","","Text in alert",""
+"passed","Wed Mar 15 18:54:24 EET 2023","Wed Mar 15 18:54:27 EET 2023","2764","","Alert examples","","","","Accept alert",""
+"passed","Wed Mar 15 18:54:25 EET 2023","Wed Mar 15 18:54:25 EET 2023","92","","Alert examples","","","","Cancel alert",""
+"passed","Wed Mar 15 18:54:28 EET 2023","Wed Mar 15 18:54:28 EET 2023","16","","Alert examples","","","","Text in alert",""

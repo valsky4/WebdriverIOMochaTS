@@ -1,0 +1,4 @@
+{
+  "using": "accessibility id",
+  "value": "Green color component value"
+}

@@ -51,7 +51,6 @@ class CalendarPage extends basePage {
 
         await this.clickUntilTextDisplayedWithInitialValue(await this.backButtonCalendar, await this.datePickerTitle, "May 2021")
         const element =  (await this.datePickerTitle).getText();
-        await browser.pause(2000);
     }
 
 }

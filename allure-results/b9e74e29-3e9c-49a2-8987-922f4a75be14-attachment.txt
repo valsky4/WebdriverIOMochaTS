@@ -1,0 +1,3 @@
+{
+  "url": "https://the-internet.herokuapp.comexit_intent/"
+}

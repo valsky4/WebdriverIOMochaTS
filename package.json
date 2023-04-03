@@ -10,6 +10,8 @@
     "@wdio/selenium-standalone-service": "^8.6.1",
     "@wdio/spec-reporter": "^8.4.0",
     "@wdio/types": "^7.30.2",
+
+    
     "appium-chromium-driver": "^1.0.47",
     "appium-uiautomator2-driver": "^2.12.6",
     "appium-xcuitest-driver": "^4.19.1",

@@ -23,6 +23,30 @@ class Page {
 
     }
 
+    async loopAndHoverUntilIsDisplayed(locator: string, expectedElement: WebdriverIO.Element, timeoutMs: number) {
+        const elementsLocator = await $$(locator);
+        let isDisplayed = false;
+        const startTime = Date.now();
+        while (!isDisplayed && Date.now() - startTime < timeoutMs) {
+          for (const el of elementsLocator) {
+            if (await el.isDisplayed()) {
+              await el.moveTo();
+              if (await expectedElement.isDisplayed()) {
+                isDisplayed = true;
+                break;
+              }
+            }
+          }
+          if (!isDisplayed) {
+            await browser.pause(5000); // wait for a short period before trying again
+          }
+        }
+        if (!isDisplayed) {
+          throw new Error(`Timeout: Could not find target element within ${timeoutMs} ms`);
+        }
+      }
+    
+
     async clickAndWaitToBeVisible(buttonLocator: WebdriverIO.Element, expectedElement: WebdriverIO.Element) {
         if (await buttonLocator.isDisplayed()) {
             await buttonLocator.click()
@@ -33,19 +57,19 @@ class Page {
     async clickUntilTextDisplayed(clickElement: WebdriverIO.Element, textElement: WebdriverIO.Element, targetText: string, timeoutMs: number): Promise<void> {
         let isTextDisplayed = false;
         let startTime = Date.now();
-      
+
         while (!isTextDisplayed) {
-          const text = await textElement.getText();
-      
-          if (text === targetText) {
-            isTextDisplayed = true;
-          } else if (Date.now() - startTime >= timeoutMs) {
-            throw new Error(`Timeout: Could not find target text (${targetText}) within ${timeoutMs} ms`);
-          } else {
-            await clickElement.click();
-          }
+            const text = await textElement.getText();
+
+            if (text === targetText) {
+                isTextDisplayed = true;
+            } else if (Date.now() - startTime >= timeoutMs) {
+                throw new Error(`Timeout: Could not find target text (${targetText}) within ${timeoutMs} ms`);
+            } else {
+                await clickElement.click();
+            }
         }
-      }
+    }
 
     async clickUntilTextDisplayedWithInitialValue(clickElement: WebdriverIO.Element, textElement: WebdriverIO.Element, targetText: string): Promise<void> {
         const initialText = await textElement.getText();
@@ -56,20 +80,20 @@ class Page {
 
         await this.clickUntilTextDisplayed(clickElement, textElement, targetText, 60000);
     }
-    
+
     async waitForAlert(timeoutMs = 60000, intervalMs = 500) {
-      return browser.waitUntil(async () => {
-          try {
-              await browser.getAlertText();
-              return true;
-          } catch (err) {
-              return false;
-          }
-      }, {
-          timeout: timeoutMs,
-          timeoutMsg: `Alert did not appear within ${timeoutMs / 1000} seconds`,
-          interval: intervalMs
-      });
-    }  
+        return browser.waitUntil(async () => {
+            try {
+                await browser.getAlertText();
+                return true;
+            } catch (err) {
+                return false;
+            }
+        }, {
+            timeout: timeoutMs,
+            timeoutMsg: `Alert did not appear within ${timeoutMs / 1000} seconds`,
+            interval: intervalMs
+        });
+    }
 }
 export default Page

@@ -1,5 +1,0 @@
-{
-  "error": "no such element",
-  "message": "no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\".//button[contains(text(), \"Click for JS Alert\")]\"}\n  (Session info: chrome=110.0.5481.77)",
-  "stacktrace": "#0 0xaaaae7f07d78 <unknown>\n#1 0xaaaae7cf75b8 <unknown>\n#2 0xaaaae7d29f3c <unknown>\n#3 0xaaaae7d5f708 <unknown>\n#4 0xaaaae7d1f9fc <unknown>\n#5 0xaaaae7d20e68 <unknown>\n#6 0xaaaae7f50f48 <unknown>\n#7 0xaaaae7f53284 <unknown>\n#8 0xaaaae7f52d24 <unknown>\n#9 0xaaaae7f3ecd8 <unknown>\n#10 0xaaaae7f53c70 <unknown>\n#11 0xaaaae7f3163c <unknown>\n#12 0xaaaae7f6f580 <unknown>\n#13 0xaaaae7f6f744 <unknown>\n#14 0xaaaae7f88650 <unknown>\n#15 0xffff9647edd8 <unknown>\n#16 0xffff964e7e9c <unknown>\n"
-}

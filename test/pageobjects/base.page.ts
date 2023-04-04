@@ -28,24 +28,44 @@ class Page {
         let isDisplayed = false;
         const startTime = Date.now();
         while (!isDisplayed && Date.now() - startTime < timeoutMs) {
-          for (const el of elementsLocator) {
-            if (await el.isDisplayed()) {
-              await el.moveTo();
-              if (await expectedElement.isDisplayed()) {
-                isDisplayed = true;
-                break;
-              }
+            for (const el of elementsLocator) {
+                if (await el.isDisplayed()) {
+                    await el.moveTo();
+                    if (await expectedElement.isDisplayed()) {
+                        isDisplayed = true;
+                        break;
+                    }
+                }
             }
-          }
-          if (!isDisplayed) {
-            await browser.pause(5000); // wait for a short period before trying again
-          }
+            if (!isDisplayed) {
+                await browser.pause(5000); // wait for a short period before trying again
+            }
         }
         if (!isDisplayed) {
-          throw new Error(`Timeout: Could not find target element within ${timeoutMs} ms`);
+            throw new Error(`Timeout: Could not find target element within ${timeoutMs} ms`);
         }
-      }
-    
+    }
+
+    async loopThroughElemenetsAndClick(locator: string, expectedText: string, elementToClick: WebdriverIO.Element, timeoutMs: number) {
+        const elementsLocator = await $$(locator);
+        const startTime = Date.now();
+        let isTargetFound = false;
+
+        while (!isTargetFound && Date.now() - startTime < timeoutMs) {
+            for (const el of elementsLocator) {
+                const row = await el.getText()
+                if (row.includes(expectedText)) {
+                    await elementToClick.click();
+                    isTargetFound = true;
+                    break
+                }
+            }
+        }
+        if (!isTargetFound) {
+            throw new Error(`Timeout: Could not find target element within ${timeoutMs} ms`);
+        }
+    }
+
 
     async clickAndWaitToBeVisible(buttonLocator: WebdriverIO.Element, expectedElement: WebdriverIO.Element) {
         if (await buttonLocator.isDisplayed()) {
